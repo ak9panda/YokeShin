@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		41B1D8CE68511F78588FBE66 /* Pods_YokeShin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2E6832006281C5AF38B4CA6 /* Pods_YokeShin.framework */; };
+		B52714972365BE2400BA6233 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52714962365BE2400BA6233 /* Movies.swift */; };
 		B5999E00236451C500BA9553 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5999DFF236451C500BA9553 /* AppDelegate.swift */; };
 		B5999E02236451C500BA9553 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5999E01236451C500BA9553 /* ViewController.swift */; };
 		B5999E05236451C500BA9553 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5999E03236451C500BA9553 /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		8B3C27AC13C8CE99F1C62EFA /* Pods-YokeShin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YokeShin.debug.xcconfig"; path = "Target Support Files/Pods-YokeShin/Pods-YokeShin.debug.xcconfig"; sourceTree = "<group>"; };
 		9D0B472B1505710675E8EAD5 /* Pods-YokeShin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YokeShin.release.xcconfig"; path = "Target Support Files/Pods-YokeShin/Pods-YokeShin.release.xcconfig"; sourceTree = "<group>"; };
+		B52714962365BE2400BA6233 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
 		B5999DFC236451C500BA9553 /* YokeShin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YokeShin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5999DFF236451C500BA9553 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5999E01236451C500BA9553 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 		B52714952365B94700BA6233 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B52714962365BE2400BA6233 /* Movies.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 			files = (
 				B5999E02236451C500BA9553 /* ViewController.swift in Sources */,
 				B5999E00236451C500BA9553 /* AppDelegate.swift in Sources */,
+				B52714972365BE2400BA6233 /* Movies.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
