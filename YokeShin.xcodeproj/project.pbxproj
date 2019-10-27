@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41B1D8CE68511F78588FBE66 /* Pods_YokeShin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2E6832006281C5AF38B4CA6 /* Pods_YokeShin.framework */; };
 		B5999E00236451C500BA9553 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5999DFF236451C500BA9553 /* AppDelegate.swift */; };
 		B5999E02236451C500BA9553 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5999E01236451C500BA9553 /* ViewController.swift */; };
 		B5999E05236451C500BA9553 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5999E03236451C500BA9553 /* Main.storyboard */; };
@@ -34,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B3C27AC13C8CE99F1C62EFA /* Pods-YokeShin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YokeShin.debug.xcconfig"; path = "Target Support Files/Pods-YokeShin/Pods-YokeShin.debug.xcconfig"; sourceTree = "<group>"; };
+		9D0B472B1505710675E8EAD5 /* Pods-YokeShin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YokeShin.release.xcconfig"; path = "Target Support Files/Pods-YokeShin/Pods-YokeShin.release.xcconfig"; sourceTree = "<group>"; };
 		B5999DFC236451C500BA9553 /* YokeShin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YokeShin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5999DFF236451C500BA9553 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5999E01236451C500BA9553 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +50,7 @@
 		B5999E1B236451C900BA9553 /* YokeShinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YokeShinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5999E1F236451C900BA9553 /* YokeShinUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YokeShinUITests.swift; sourceTree = "<group>"; };
 		B5999E21236451C900BA9553 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2E6832006281C5AF38B4CA6 /* Pods_YokeShin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YokeShin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41B1D8CE68511F78588FBE66 /* Pods_YokeShin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +79,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		73EF632D48EC372302A8AB0D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8B3C27AC13C8CE99F1C62EFA /* Pods-YokeShin.debug.xcconfig */,
+				9D0B472B1505710675E8EAD5 /* Pods-YokeShin.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A2F4ACD72338C2249C183324 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E2E6832006281C5AF38B4CA6 /* Pods_YokeShin.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B52714952365B94700BA6233 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		B5999DF3236451C500BA9553 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +110,8 @@
 				B5999E13236451C900BA9553 /* YokeShinTests */,
 				B5999E1E236451C900BA9553 /* YokeShinUITests */,
 				B5999DFD236451C500BA9553 /* Products */,
+				73EF632D48EC372302A8AB0D /* Pods */,
+				A2F4ACD72338C2249C183324 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +128,7 @@
 		B5999DFE236451C500BA9553 /* YokeShin */ = {
 			isa = PBXGroup;
 			children = (
+				B52714952365B94700BA6233 /* Models */,
 				B5999DFF236451C500BA9553 /* AppDelegate.swift */,
 				B5999E01236451C500BA9553 /* ViewController.swift */,
 				B5999E03236451C500BA9553 /* Main.storyboard */,
@@ -132,9 +164,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5999E24236451C900BA9553 /* Build configuration list for PBXNativeTarget "YokeShin" */;
 			buildPhases = (
+				259C7B8204E855DCA5CF5923 /* [CP] Check Pods Manifest.lock */,
 				B5999DF8236451C500BA9553 /* Sources */,
 				B5999DF9236451C500BA9553 /* Frameworks */,
 				B5999DFA236451C500BA9553 /* Resources */,
+				CA17CFAD54EF42B6FAFC05B7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -250,6 +284,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		259C7B8204E855DCA5CF5923 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YokeShin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA17CFAD54EF42B6FAFC05B7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YokeShin/Pods-YokeShin-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YokeShin/Pods-YokeShin-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YokeShin/Pods-YokeShin-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B5999DF8236451C500BA9553 /* Sources */ = {
@@ -430,6 +506,7 @@
 		};
 		B5999E25236451C900BA9553 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B3C27AC13C8CE99F1C62EFA /* Pods-YokeShin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -448,6 +525,7 @@
 		};
 		B5999E26236451C900BA9553 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D0B472B1505710675E8EAD5 /* Pods-YokeShin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
