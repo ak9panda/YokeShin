@@ -8,7 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		41B1D8CE68511F78588FBE66 /* Pods_YokeShin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2E6832006281C5AF38B4CA6 /* Pods_YokeShin.framework */; };
-		B52714972365BE2400BA6233 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52714962365BE2400BA6233 /* Movies.swift */; };
+		B5020459236EFC3300685896 /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5020458236EFC3300685896 /* APIs.swift */; };
+		B522224F237417FE006F8BAD /* BookmarkVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B522224E237417FE006F8BAD /* BookmarkVO.swift */; };
+		B522225123741AEB006F8BAD /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B522225023741AEB006F8BAD /* MovieModel.swift */; };
+		B52714972365BE2400BA6233 /* MoviesVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52714962365BE2400BA6233 /* MoviesVO.swift */; };
+		B59591352371C465001E6DF0 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59591342371C465001E6DF0 /* Routes.swift */; };
+		B59591382371CD2D001E6DF0 /* MovieGenreVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59591372371CD2D001E6DF0 /* MovieGenreVO.swift */; };
+		B595913C2371D1F6001E6DF0 /* MovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B595913B2371D1F6001E6DF0 /* MovieResponse.swift */; };
+		B595913E2371D748001E6DF0 /* MovieListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B595913D2371D748001E6DF0 /* MovieListResponse.swift */; };
+		B59591402371D955001E6DF0 /* MovieGenreResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B595913F2371D955001E6DF0 /* MovieGenreResponse.swift */; };
+		B59591422371D9B1001E6DF0 /* MovieGenreListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59591412371D9B1001E6DF0 /* MovieGenreListResponse.swift */; };
 		B5999E00236451C500BA9553 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5999DFF236451C500BA9553 /* AppDelegate.swift */; };
 		B5999E02236451C500BA9553 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5999E01236451C500BA9553 /* ViewController.swift */; };
 		B5999E05236451C500BA9553 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5999E03236451C500BA9553 /* Main.storyboard */; };
@@ -38,7 +47,16 @@
 /* Begin PBXFileReference section */
 		8B3C27AC13C8CE99F1C62EFA /* Pods-YokeShin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YokeShin.debug.xcconfig"; path = "Target Support Files/Pods-YokeShin/Pods-YokeShin.debug.xcconfig"; sourceTree = "<group>"; };
 		9D0B472B1505710675E8EAD5 /* Pods-YokeShin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YokeShin.release.xcconfig"; path = "Target Support Files/Pods-YokeShin/Pods-YokeShin.release.xcconfig"; sourceTree = "<group>"; };
-		B52714962365BE2400BA6233 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
+		B5020458236EFC3300685896 /* APIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
+		B522224E237417FE006F8BAD /* BookmarkVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkVO.swift; sourceTree = "<group>"; };
+		B522225023741AEB006F8BAD /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
+		B52714962365BE2400BA6233 /* MoviesVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesVO.swift; sourceTree = "<group>"; };
+		B59591342371C465001E6DF0 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
+		B59591372371CD2D001E6DF0 /* MovieGenreVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenreVO.swift; sourceTree = "<group>"; };
+		B595913B2371D1F6001E6DF0 /* MovieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResponse.swift; sourceTree = "<group>"; };
+		B595913D2371D748001E6DF0 /* MovieListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListResponse.swift; sourceTree = "<group>"; };
+		B595913F2371D955001E6DF0 /* MovieGenreResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenreResponse.swift; sourceTree = "<group>"; };
+		B59591412371D9B1001E6DF0 /* MovieGenreListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenreListResponse.swift; sourceTree = "<group>"; };
 		B5999DFC236451C500BA9553 /* YokeShin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YokeShin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5999DFF236451C500BA9553 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5999E01236451C500BA9553 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -98,12 +116,51 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B502044E236EF70F00685896 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B5020458236EFC3300685896 /* APIs.swift */,
+				B59591342371C465001E6DF0 /* Routes.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		B52714952365B94700BA6233 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B52714962365BE2400BA6233 /* Movies.swift */,
+				B59591362371CB10001E6DF0 /* vos */,
+				B522225023741AEB006F8BAD /* MovieModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B59591362371CB10001E6DF0 /* vos */ = {
+			isa = PBXGroup;
+			children = (
+				B52714962365BE2400BA6233 /* MoviesVO.swift */,
+				B59591372371CD2D001E6DF0 /* MovieGenreVO.swift */,
+				B522224E237417FE006F8BAD /* BookmarkVO.swift */,
+			);
+			path = vos;
+			sourceTree = "<group>";
+		};
+		B59591392371D00F001E6DF0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B595913A2371D018001E6DF0 /* Response */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		B595913A2371D018001E6DF0 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				B595913B2371D1F6001E6DF0 /* MovieResponse.swift */,
+				B595913D2371D748001E6DF0 /* MovieListResponse.swift */,
+				B595913F2371D955001E6DF0 /* MovieGenreResponse.swift */,
+				B59591412371D9B1001E6DF0 /* MovieGenreListResponse.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 		B5999DF3236451C500BA9553 = {
@@ -131,6 +188,8 @@
 		B5999DFE236451C500BA9553 /* YokeShin */ = {
 			isa = PBXGroup;
 			children = (
+				B59591392371D00F001E6DF0 /* Network */,
+				B502044E236EF70F00685896 /* Utils */,
 				B52714952365B94700BA6233 /* Models */,
 				B5999DFF236451C500BA9553 /* AppDelegate.swift */,
 				B5999E01236451C500BA9553 /* ViewController.swift */,
@@ -335,9 +394,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B522225123741AEB006F8BAD /* MovieModel.swift in Sources */,
+				B595913C2371D1F6001E6DF0 /* MovieResponse.swift in Sources */,
+				B59591422371D9B1001E6DF0 /* MovieGenreListResponse.swift in Sources */,
+				B59591402371D955001E6DF0 /* MovieGenreResponse.swift in Sources */,
 				B5999E02236451C500BA9553 /* ViewController.swift in Sources */,
+				B522224F237417FE006F8BAD /* BookmarkVO.swift in Sources */,
 				B5999E00236451C500BA9553 /* AppDelegate.swift in Sources */,
-				B52714972365BE2400BA6233 /* Movies.swift in Sources */,
+				B59591352371C465001E6DF0 /* Routes.swift in Sources */,
+				B52714972365BE2400BA6233 /* MoviesVO.swift in Sources */,
+				B595913E2371D748001E6DF0 /* MovieListResponse.swift in Sources */,
+				B5020459236EFC3300685896 /* APIs.swift in Sources */,
+				B59591382371CD2D001E6DF0 /* MovieGenreVO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,13 +584,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HA4A8Y4KQA;
 				INFOPLIST_FILE = YokeShin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = akp.YokeShin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -535,13 +604,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HA4A8Y4KQA;
 				INFOPLIST_FILE = YokeShin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = akp.YokeShin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -3,5 +3,7 @@ use_frameworks!
 
 target 'YokeShin' do
     pod 'RealmSwift'
-    pod 'Alamofire', '4.4.0'
+    pod 'Alamofire'
+    pod 'AlamofireObjectMapper'
+    pod 'ObjectMapper', '~> 3.4'
 end
