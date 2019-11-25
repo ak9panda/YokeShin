@@ -1,36 +1,46 @@
 PODS:
-  - Alamofire (4.9.1)
-  - AlamofireObjectMapper (5.2.1):
-    - Alamofire (~> 4.7)
-    - ObjectMapper (~> 3.4)
+  - Alamofire (5.0.0-rc.2)
+  - AlamofireObjectMapper (6.2.0):
+    - Alamofire (= 5.0.0-rc.2)
+    - ObjectMapper (~> 3.5.1)
   - ObjectMapper (3.5.1)
-  - Realm (3.20.0):
-    - Realm/Headers (= 3.20.0)
-  - Realm/Headers (3.20.0)
-  - RealmSwift (3.20.0):
-    - Realm (= 3.20.0)
+  - ReachabilitySwift (5.0.0)
+  - Realm (4.1.1):
+    - Realm/Headers (= 4.1.1)
+  - Realm/Headers (4.1.1)
+  - RealmSwift (4.1.1):
+    - Realm (= 4.1.1)
+  - SDWebImage (5.3.2):
+    - SDWebImage/Core (= 5.3.2)
+  - SDWebImage/Core (5.3.2)
 
 DEPENDENCIES:
-  - Alamofire
+  - Alamofire (= 5.0.0-rc.2)
   - AlamofireObjectMapper
   - ObjectMapper (~> 3.4)
+  - ReachabilitySwift
   - RealmSwift
+  - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - AlamofireObjectMapper
     - ObjectMapper
+    - ReachabilitySwift
     - Realm
     - RealmSwift
+    - SDWebImage
 
 SPEC CHECKSUMS:
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  AlamofireObjectMapper: 1989f690e982b71921b9253f53a4f33a9bc00d88
+  Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
+  AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
-  Realm: 8b2ca5bc6479a91f379b6b42b5922e396cd5ba5a
-  RealmSwift: 1949ef26a279e1845bd51d591b9103adfcd121df
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  Realm: 25f0a8244cbb1c2271c922963ea8666fc2d8104d
+  RealmSwift: 9e2657b33764f80e4a4dffd6d440e24715782052
+  SDWebImage: 6ac2eb96571bff96ecde31a987172c5934a0eb7d
 
-PODFILE CHECKSUM: cd272e12a6ea5cdf7b27ad1dcab5e3c7608151e5
+PODFILE CHECKSUM: 94fafd91359da6def876192b4627cd08c6763bc4
 
 COCOAPODS: 1.8.4

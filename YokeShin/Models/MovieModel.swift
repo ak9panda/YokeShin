@@ -25,11 +25,48 @@ class MovieModel {
         }.resume()
     }
     
-    func fetchMovieDetails (movieId : String, completion : @escaping ([MovieResponse]) -> Void) {
+    func fetchMovieDetails (movieId : String, completion : @escaping (MovieResponse) -> Void) {
         let route = URL(string: "\(Routes.ROUTE_MOVIE_DETAILS)?api_key=\(API.KEY)")!
         URLSession.shared.dataTask(with: route) { (data, urlResponse, error) in
-            
-        }
+            let response : MovieResponse? = self.responseHandler(data: data, urlResponse: urlResponse, error: error)
+            if let data = response {
+                completion(data)
+            }
+        }.resume()
+    }
+    
+    func fetchTopRatedMovies (pageId : Int = 1, completion : @escaping ([MovieResponse]) -> Void) {
+        let route = URL(string: "\(Routes.ROUTE_TOP_RATED_MOVIES)?api_key=\(API.KEY)")!
+        URLSession.shared.dataTask(with: route) { (data, urlResponse, error) in
+            let response : MovieListResponse? = self.responseHandler(data: data, urlResponse: urlResponse, error: error)
+            if let data = response {
+                completion(data.results)
+            } else {
+                completion([MovieResponse]())
+            }
+        }.resume()
+    }
+    
+    func fetchPopularMovies (pageId : Int = 1, completion : @escaping ([MovieResponse]) -> Void) {
+        let route = URL(string: "\(Routes.ROUTE_POPULAR_MOVIES)")!
+        URLSession.shared.dataTask(with: route) { (data, urlResponse, error) in
+            let response : MovieListResponse? = self.responseHandler(data: data, urlResponse: urlResponse, error: error)
+            if let data = response {
+                completion(data.results)
+            } else {
+                completion([MovieResponse]())
+            }
+        }.resume()
+    }
+    
+    func fetchMovieGenres (completion : @escaping ([MovieGenreResponse]) -> Void) {
+        let route = URL(string: Routes.ROUTE_MOVIE_GENRES)!
+        URLSession.shared.dataTask(with: route) { (data, urlResponse, error) in
+            let respose : MovirGenreListResponse? = self.responseHandler(data: data, urlResponse: urlResponse, error: error)
+            if let data = respose {
+                completion(data.genres)
+            }
+        }.resume()
     }
     
     func responseHandler<T : Decodable>(data : Data?, urlResponse : URLResponse?, error : Error?) -> T? {
