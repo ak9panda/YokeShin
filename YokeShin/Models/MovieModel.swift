@@ -25,7 +25,7 @@ class MovieModel {
         }.resume()
     }
     
-    func fetchMovieDetails (movieId : String, completion : @escaping (MovieResponse) -> Void) {
+    func fetchMovieDetails (movieId : Int, completion : @escaping (MovieResponse) -> Void) {
         let route = URL(string: "\(Routes.ROUTE_MOVIE_DETAILS)?api_key=\(API.KEY)")!
         URLSession.shared.dataTask(with: route) { (data, urlResponse, error) in
             let response : MovieResponse? = self.responseHandler(data: data, urlResponse: urlResponse, error: error)

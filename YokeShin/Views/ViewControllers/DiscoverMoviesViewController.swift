@@ -17,6 +17,8 @@ class DiscoverMoviesViewController: UIViewController {
     
     var movieList : Results<MovieVO>?
     
+    var movieGenreList : Results<MovieGenreVO>?
+    
     private var movieListNotifierToken : NotificationToken?
     
     lazy var refreshControl: UIRefreshControl = {
@@ -30,6 +32,11 @@ class DiscoverMoviesViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         initView()
+        
+        //Remove all cached data in URL Response
+        URLCache.shared.removeAllCachedResponses()
+        
+        initGenreListFetchRequest()
         
         initMovieListFetchRequest()
         
@@ -64,6 +71,22 @@ class DiscoverMoviesViewController: UIViewController {
         }
     }
     
+    fileprivate func initGenreListFetchRequest() {
+        let genres = realm.objects(MovieGenreVO.self)
+        if genres.isEmpty {
+            MovieModel.shared.fetchMovieGenres{ genres in
+                genres.forEach { [weak self] genre in
+                    DispatchQueue.main.async {
+                        MovieGenreResponse.saveMovieGenre(data: genre, realm: self!.realm)
+                    }
+                }
+            }
+        }else{
+            self.movieGenreList = genres
+            collectionViewMovieLists.reloadData()
+        }
+    }
+    
     fileprivate func initMovieListFetchRequest() {
         let movieList = realm.objects(MovieVO.self)
         if movieList.isEmpty {
@@ -76,7 +99,7 @@ class DiscoverMoviesViewController: UIViewController {
             }
         }else{
             self.movieList = movieList
-            collectionViewMovieLists.reloadData()
+            //collectionViewMovieLists.reloadData()
         }
     }
     
@@ -111,13 +134,17 @@ class DiscoverMoviesViewController: UIViewController {
             self.fetchPopularMovies()
         }
     }
+    
+    deinit {
+        movieListNotifierToken?.invalidate()
+    }
 }
 
 
 
 extension DiscoverMoviesViewController : UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return movieGenreList?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -132,11 +159,30 @@ extension DiscoverMoviesViewController : UICollectionViewDataSource {
         cell.data = movie
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let genres = movieGenreList?[indexPath.section]
+        if let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: TitleSupplementaryView.reuseIdentifier, for: indexPath) as? TitleSupplementaryView{
+            sectionHeader.lblHeader.text = genres?.name
+            return sectionHeader
+        }
+        return UICollectionReusableView()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 50)
+    }
 }
 
 extension DiscoverMoviesViewController : UICollectionViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if let MovieDetailViewController = segue.destination as? MovieDetailViewController {
+            if let indexPaths = collectionViewMovieLists.indexPathsForSelectedItems, indexPaths.count > 0 {
+                let selectedIndexPath = indexPaths[0]
+                let movie = movieList![selectedIndexPath.row]
+                MovieDetailViewController.movieId = Int(movie.id)
+            }
+        }
     }
 }
 
