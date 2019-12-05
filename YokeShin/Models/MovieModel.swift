@@ -59,6 +59,30 @@ class MovieModel {
         }.resume()
     }
     
+    func fetchUpcomingMovies (pageId : Int = 1, completion : @escaping ([MovieResponse]) -> Void) {
+        let route = URL(string: "\(Routes.ROUTE_UPCOMING_MOVIES)")!
+        URLSession.shared.dataTask(with: route) { (data, urlResponse, error) in
+            let response : MovieListResponse? = self.responseHandler(data: data, urlResponse: urlResponse, error: error)
+            if let data = response {
+                completion(data.results)
+            } else {
+                completion([MovieResponse]())
+            }
+        }.resume()
+    }
+    
+    func fetchNowplayingMovies (pageId : Int = 1, completion : @escaping ([MovieResponse]) -> Void) {
+        let route = URL(string: "\(Routes.ROUTE_NOW_PLAYING_MOVIES)")!
+        URLSession.shared.dataTask(with: route) { (data, urlResponse, error) in
+            let response : MovieListResponse? = self.responseHandler(data: data, urlResponse: urlResponse, error: error)
+            if let data = response {
+                completion(data.results)
+            } else {
+                completion([MovieResponse]())
+            }
+        }.resume()
+    }
+    
     func fetchMovieGenres (completion : @escaping ([MovieGenreResponse]) -> Void) {
         let route = URL(string: Routes.ROUTE_MOVIE_GENRES)!
         URLSession.shared.dataTask(with: route) { (data, urlResponse, error) in

@@ -19,6 +19,8 @@ class DiscoverMoviesViewController: UIViewController {
     
     var movieGenreList : Results<MovieGenreVO>?
     
+    var movieTags : [String] = ["Now Playing", "Upcoming", "Popular", "Top Rated"]
+    
     private var movieListNotifierToken : NotificationToken?
     
     lazy var refreshControl: UIRefreshControl = {
@@ -51,24 +53,26 @@ class DiscoverMoviesViewController: UIViewController {
     }
     
     func realmNotiObserver() {
-        movieList = realm.objects(MovieVO.self).sorted(byKeyPath: "popularity", ascending: true)
-        movieListNotifierToken = movieList?.observe{ [weak self] (changes : RealmCollectionChange) in
-            switch changes {
-            case .initial:
-                self?.collectionViewMovieLists.reloadData()
-                break
-            case .update(_, let deletions, let insertions, let modifications):
-                self?.collectionViewMovieLists.performBatchUpdates({
-                    self?.collectionViewMovieLists.deleteItems(at: deletions.map({ IndexPath(row: $0, section: 0)}))
-                    self?.collectionViewMovieLists.insertItems(at: insertions.map({ IndexPath(row: $0, section: 0)}))
-                    self?.collectionViewMovieLists.reloadItems(at: modifications.map({ IndexPath(row: $0, section: 0)}))
-                }, completion: nil)
-                break
-            case .error(let error):
-                fatalError("\(error)")
-                break;
-            }
-        }
+        collectionViewMovieLists.reloadData()
+        
+//        movieList = realm.objects(MovieVO.self).sorted(byKeyPath: "popularity", ascending: true)
+//        movieListNotifierToken = movieList?.observe{ [weak self] (changes : RealmCollectionChange) in
+//            switch changes {
+//            case .initial:
+//                self?.collectionViewMovieLists.reloadData()
+//                break
+//            case .update(_, let deletions, let insertions, let modifications):
+//                self?.collectionViewMovieLists.performBatchUpdates({
+//                    self?.collectionViewMovieLists.deleteItems(at: deletions.map({ IndexPath(row: $0, section: 0)}))
+//                    self?.collectionViewMovieLists.insertItems(at: insertions.map({ IndexPath(row: $0, section: 0)}))
+//                    self?.collectionViewMovieLists.reloadItems(at: modifications.map({ IndexPath(row: $0, section: 0)}))
+//                }, completion: nil)
+//                break
+//            case .error(let error):
+//                fatalError("\(error)")
+//                break;
+//            }
+//        }
     }
     
     fileprivate func initGenreListFetchRequest() {
@@ -83,41 +87,65 @@ class DiscoverMoviesViewController: UIViewController {
             }
         }else{
             self.movieGenreList = genres
-            collectionViewMovieLists.reloadData()
+            //collectionViewMovieLists.reloadData()
         }
     }
     
     fileprivate func initMovieListFetchRequest() {
         let movieList = realm.objects(MovieVO.self)
         if movieList.isEmpty {
-            MovieModel.shared.fetchPopularMovies{ (movies) in
-                movies.forEach({ [weak self] movie in
-                    DispatchQueue.main.async {
-                        MovieResponse.saveMovie(data: movie, realm: self!.realm)
-                    }
-                })
-            }
+            FetchMovies()
         }else{
             self.movieList = movieList
             //collectionViewMovieLists.reloadData()
         }
     }
     
-    fileprivate func fetchPopularMovies() {
+    fileprivate func FetchMovies() {
+        var movieResponses = [MovieResponse]()
+        
         if NetworkUtil.checkReachable() == false {
             Alerts.showAlert(VC: self, title: "Error", message: "No Internet Connection!")
             return
         }
-        for index in 0...5 {
-            MovieModel.shared.fetchPopularMovies(pageId: index) { [weak self] movies in
-                DispatchQueue.main.async { [weak self] in
-                    movies.forEach{ movie in
-                        MovieResponse.saveMovie(data: movie, realm: self!.realm)
+        
+//        for index in 0...5 {
+            MovieModel.shared.fetchTopRatedMovies(pageId: 1) { [weak self] movies in
+                movies.forEach{ movie in
+                    var data = movie
+                    data.movieTag = MovieTag.TOP_RATED
+                    movieResponses.append(data)
+//                        MovieResponse.saveMovie(data: data, realm: self!.realm)
+                }
+                MovieModel.shared.fetchPopularMovies(pageId: 1) { [weak self] movies in
+                    movies.forEach({ movie in
+                        var data = movie
+                        data.movieTag = MovieTag.POPULAR
+                        movieResponses.append(data)
+                    })
+                    MovieModel.shared.fetchUpcomingMovies(pageId: 1) { [weak self] movies in
+                        movies.forEach({ movie in
+                            var data = movie
+                            data.movieTag = MovieTag.UPCOMING
+                            movieResponses.append(data)
+                        })
+                        MovieModel.shared.fetchNowplayingMovies(pageId: 1) { [weak self] movies in
+                            movies.forEach({ movie in
+                                var data = movie
+                                data.movieTag = MovieTag.NOW_PLAYING
+                                movieResponses.append(data)
+                            })
+                            
+                            DispatchQueue.main.async {
+                                movieResponses.forEach({ (movieResponse) in
+                                    MovieResponse.saveMovie(data: movieResponse, realm: self!.realm)
+                                })
+                            }
+                        }
                     }
-                    self?.refreshControl.endRefreshing()
                 }
             }
-        }
+//        }
         
     }
 
@@ -131,7 +159,7 @@ class DiscoverMoviesViewController: UIViewController {
                 }
             }
             //refetch movies for update
-            self.fetchPopularMovies()
+            self.FetchMovies()
         }
     }
     
@@ -144,26 +172,34 @@ class DiscoverMoviesViewController: UIViewController {
 
 extension DiscoverMoviesViewController : UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return movieGenreList?.count ?? 0
+        return movieTags.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movieList?.count ?? 0
+        let tag = movieTags[section]
+        let realmObj = realm.objects(MovieVO.self)//.filter("movie_tag==\(tag)")
+        let data = realmObj.filter("movie_tag == %@", tag)
+        return data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let movie = movieList?[indexPath.row]
+        var selectedmovie : MovieVO?
+        let tag = movieTags[indexPath.section]
+        let realmObj = realm.objects(MovieVO.self)//.filter("movie_tag==\(tag)")
+        let data = realmObj.filter("movie_tag == %@", tag)
+        selectedmovie = data[indexPath.row]
+//        let movie = movieList?[indexPath.row]
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieListCollectionViewCell.identifier, for: indexPath) as? MovieListCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.data = movie
+        cell.data = selectedmovie
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let genres = movieGenreList?[indexPath.section]
+        let tag = movieTags[indexPath.section]
         if let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: TitleSupplementaryView.reuseIdentifier, for: indexPath) as? TitleSupplementaryView{
-            sectionHeader.lblHeader.text = genres?.name
+            sectionHeader.lblHeader.text = MovieTag(rawValue: tag).map { $0.rawValue }
             return sectionHeader
         }
         return UICollectionReusableView()
@@ -178,8 +214,10 @@ extension DiscoverMoviesViewController : UICollectionViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let MovieDetailViewController = segue.destination as? MovieDetailViewController {
             if let indexPaths = collectionViewMovieLists.indexPathsForSelectedItems, indexPaths.count > 0 {
-                let selectedIndexPath = indexPaths[0]
-                let movie = movieList![selectedIndexPath.row]
+                let tag = movieTags[indexPaths[0].section]
+                let realmObj = realm.objects(MovieVO.self)//.filter("movie_tag==\(tag)")
+                let data = realmObj.filter("movie_tag == %@", tag)
+                let movie = data[indexPaths[0].row]
                 MovieDetailViewController.movieId = Int(movie.id)
             }
         }

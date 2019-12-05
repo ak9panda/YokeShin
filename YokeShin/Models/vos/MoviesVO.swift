@@ -29,6 +29,7 @@ import RealmSwift
     dynamic var revenue : Int = 0
     dynamic var runtime : Int = 0
     dynamic var tagline : String?
+    dynamic var movie_tag : String?
     var genres = List<MovieGenreVO>()
     
     override static func primaryKey() -> String?{
@@ -38,6 +39,14 @@ import RealmSwift
     override static func ignoredProperties() -> [String]{
         return ["genre_ids"]
     }
+}
+
+enum MovieTag : String {
+    case NOW_PLAYING = "Now Playing"
+    case POPULAR = "Popular"
+    case TOP_RATED = "Top Rated"
+    case UPCOMING = "Upcoming"
+    case NOT_LISTED = "Not Listed"
 }
 
 extension MovieVO {

@@ -30,6 +30,7 @@ struct MovieResponse : Codable{
     let revenue : Int?
     let runtime : Int?
     let tagline : String?
+    var movieTag : MovieTag? = MovieTag.NOT_LISTED
     
     enum CodingKeys:String,CodingKey {
         case popularity
@@ -84,6 +85,7 @@ struct MovieResponse : Codable{
         movieVO.revenue = data.revenue ?? 0
         movieVO.runtime = data.runtime ?? 0
         movieVO.tagline = data.tagline ?? ""
+        movieVO.movie_tag = data.movieTag.map() {$0.rawValue}
         
         do{
             try realm.write {
