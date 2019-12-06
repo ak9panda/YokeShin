@@ -53,26 +53,26 @@ class DiscoverMoviesViewController: UIViewController {
     }
     
     func realmNotiObserver() {
-        collectionViewMovieLists.reloadData()
-        
-//        movieList = realm.objects(MovieVO.self).sorted(byKeyPath: "popularity", ascending: true)
-//        movieListNotifierToken = movieList?.observe{ [weak self] (changes : RealmCollectionChange) in
-//            switch changes {
-//            case .initial:
-//                self?.collectionViewMovieLists.reloadData()
-//                break
-//            case .update(_, let deletions, let insertions, let modifications):
-//                self?.collectionViewMovieLists.performBatchUpdates({
-//                    self?.collectionViewMovieLists.deleteItems(at: deletions.map({ IndexPath(row: $0, section: 0)}))
-//                    self?.collectionViewMovieLists.insertItems(at: insertions.map({ IndexPath(row: $0, section: 0)}))
-//                    self?.collectionViewMovieLists.reloadItems(at: modifications.map({ IndexPath(row: $0, section: 0)}))
-//                }, completion: nil)
-//                break
-//            case .error(let error):
-//                fatalError("\(error)")
-//                break;
-//            }
-//        }
+        movieList = realm.objects(MovieVO.self)//.sorted(byKeyPath: "popularity", ascending: true)
+        movieListNotifierToken = movieList?.observe{ [weak self] (changes : RealmCollectionChange) in
+            switch changes {
+            case .initial:
+                self?.collectionViewMovieLists.reloadData()
+                break
+            case .update:
+                self?.collectionViewMovieLists.performBatchUpdates({
+//                    self?.collectionViewMovieLists.deleteItems(at: deletions.map { IndexPath(row: $0, section: 0) })
+//                    self?.collectionViewMovieLists.insertItems(at: insertions.map{ IndexPath(row: $0, section: 0) })
+//                    self?.collectionViewMovieLists.reloadItems(at: modifications.map{ IndexPath(row: $0, section: 0) })
+                    self?.collectionViewMovieLists.reloadData()
+                    self?.refreshControl.endRefreshing()
+                }, completion: nil)
+                break
+            case .error(let error):
+                fatalError("\(error)")
+                break;
+            }
+        }
     }
     
     fileprivate func initGenreListFetchRequest() {

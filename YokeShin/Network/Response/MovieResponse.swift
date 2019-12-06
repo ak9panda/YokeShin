@@ -56,7 +56,7 @@ struct MovieResponse : Codable{
     }
     
     static func saveMovie (data : MovieResponse, realm : Realm) {
-        var movieVO = MovieVO()
+        let movieVO = MovieVO()
         
         movieVO.popularity = data.popularity ?? 0
         movieVO.vote_count = data.vote_count ?? 0
@@ -99,6 +99,35 @@ struct MovieResponse : Codable{
     static func convertToMovieVO(data : MovieResponse, realm : Realm) -> MovieVO {
         //TODO: Write Convert Logic
         let movieVO = MovieVO()
+        
+        movieVO.popularity = data.popularity ?? 0
+        movieVO.vote_count = data.vote_count ?? 0
+        movieVO.video = data.video ?? false
+        movieVO.poster_path = data.poster_path ?? ""
+        movieVO.id = data.id ?? 0
+        movieVO.adult = data.adult ?? false
+        movieVO.backdrop_path = data.backdrop_path ?? ""
+        movieVO.original_language = data.original_language ?? ""
+        movieVO.original_title = data.original_title ?? ""
+//        movieVO.genre_ids = data.genre_ids ?? []
+        
+        if let genre_ids = data.genre_ids, !genre_ids.isEmpty{
+            genre_ids.forEach { (id) in
+                if let movieGenreVO = MovieGenreVO.getMovieGenreVOById(genreId: id, realm: realm){
+                    movieVO.genres.append(movieGenreVO)
+                }
+            }
+        }
+        movieVO.title = data.title ?? ""
+        movieVO.vote_average = data.vote_average ?? 0
+        movieVO.overview = data.overview ?? ""
+        movieVO.release_date = data.release_date ?? ""
+        movieVO.budget = data.budget ?? 0
+        movieVO.homepage = data.homepage ?? ""
+        movieVO.imdb_id = data.imdb_id ?? ""
+        movieVO.revenue = data.revenue ?? 0
+        movieVO.runtime = data.runtime ?? 0
+        movieVO.tagline = data.tagline ?? ""
         
         return movieVO
     }
