@@ -31,8 +31,8 @@ class MoviesByGenreViewController: UIViewController {
     }
     
     func initView() {
-//        CollectionViewMovieList.dataSource = self
-//        CollectionViewMovieList.delegate = self
+        CollectionViewMovieList.dataSource = self
+        CollectionViewMovieList.delegate = self
     }
 }
 
@@ -57,7 +57,14 @@ extension MoviesByGenreViewController: UICollectionViewDataSource {
 
 extension MoviesByGenreViewController: UICollectionViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if let movieDeatilViewController = segue.destination as? MovieDetailViewController {
+            if let indexPaths = CollectionViewMovieList.indexPathsForSelectedItems, indexPaths.count > 0 {
+                let selectedIndexPath = indexPaths[0]
+                let movie = genreMovieList?.movies[selectedIndexPath.row]
+                movieDeatilViewController.movieId = Int(movie?.id ?? 0)
+                self.navigationItem.title = movie?.original_title ?? ""
+            }
+        }
     }
 }
 

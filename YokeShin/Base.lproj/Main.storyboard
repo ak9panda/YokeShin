@@ -629,13 +629,10 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="imageMoviePoster" destination="TN9-jg-3Oc" id="6x2-dt-zCo"/>
+                                            <segue destination="BUi-Ki-Bc1" kind="show" id="u8H-y0-Q0H"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="SfH-nz-Rsx" id="INS-2B-mhi"/>
-                                    <outlet property="delegate" destination="SfH-nz-Rsx" id="ymG-BZ-PKg"/>
-                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -665,6 +662,6 @@
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="E2b-rs-Uqr"/>
+        <segue reference="u8H-y0-Q0H"/>
     </inferredMetricsTieBreakers>
 </document>

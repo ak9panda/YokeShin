@@ -45,6 +45,18 @@ class GenreListViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let movieListByGenreViewController = segue.destination as? MoviesByGenreViewController {
+            if let indexPath = GenreListTableView.indexPathForSelectedRow {
+                let genreVO = movieGenre?[indexPath.row]
+                movieListByGenreViewController.genreMovieList = genreVO
+                
+                self.navigationItem.title = genreVO?.name ?? ""
+            }
+            
+        }
+    }
+    
     fileprivate func realmNotiObserver() {
         movieGenre = realm.objects(MovieGenreVO.self).sorted(byKeyPath: "name", ascending: true)
         movieGenresNotiToken = movieGenre?.observe{ [weak self] (changes : RealmCollectionChange) in
@@ -69,11 +81,6 @@ class GenreListViewController: UIViewController {
             }
         }
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-    }
-
 }
 
 extension GenreListViewController : UITableViewDataSource {
