@@ -13,7 +13,7 @@ import SDWebImage
 class MovieDetailViewController: UIViewController {
 
     @IBOutlet weak var imgCoverViewLarge: UIImageView!
-    @IBOutlet weak var imgCoverViewSmall: UIImageView!
+    @IBOutlet weak var lblMovieName: UILabel!
     @IBOutlet weak var lblYear: UILabel!
     @IBOutlet weak var lblType: UILabel!
     @IBOutlet weak var lblHours: UILabel!
@@ -22,6 +22,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var lblRatings: UILabel!
     @IBOutlet weak var btnClose: UIButton!
     @IBOutlet weak var btnPlay: UIButton!
+    @IBOutlet weak var btnBookmark: UIButton!
     
     var movieId : Int = 0
     
@@ -37,6 +38,16 @@ class MovieDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        
+        let gradient: CAGradientLayer = CAGradientLayer()
+
+        gradient.colors = [UIColor.lightGray.cgColor, UIColor.clear.cgColor]
+        gradient.locations = [0.0 , 1.0]
+        gradient.startPoint = CGPoint(x: 1.0, y: 0.0)
+        gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
+        gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.view.frame.size.height/3)
+
+        self.imgCoverViewLarge.layer.insertSublayer(gradient, at: 0)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -62,7 +73,8 @@ class MovieDetailViewController: UIViewController {
     
     fileprivate func bindDataToView(data : MovieVO) {
         self.imgCoverViewLarge.sd_setImage(with: URL(string: "\(API.BASE_IMG_URL)\(data.poster_path ?? "")"), placeholderImage: #imageLiteral(resourceName: "ic_movie"), options:  SDWebImageOptions.progressiveLoad, completed: nil)
-        self.imgCoverViewSmall.sd_setImage(with: URL(string: "\(API.BASE_IMG_URL)\(data.poster_path ?? "")"), placeholderImage: #imageLiteral(resourceName: "ic_movie"), options:  SDWebImageOptions.progressiveLoad, completed: nil)
+        self.lblMovieName.text = data.original_title
+//        self.imgCoverViewSmall.sd_setImage(with: URL(string: "\(API.BASE_IMG_URL)\(data.poster_path ?? "")"), placeholderImage: #imageLiteral(resourceName: "ic_movie"), options:  SDWebImageOptions.progressiveLoad, completed: nil)
         self.lblYear.text = data.release_date
         self.lblType.text = data.genres[0].name
         self.lblHours.text = String(data.runtime)
@@ -73,8 +85,24 @@ class MovieDetailViewController: UIViewController {
             }
         }
         self.lblRatings.text = String(data.vote_average)
+        if let _ = realm.object(ofType: BookmarkVO.self, forPrimaryKey: data.id){
+            btnBookmark.setImage(UIImage(named: "ic_bookmark_fill"), for: .normal)
+        }else{
+            btnBookmark.setImage(UIImage(named: "ic_bookmark_empty"), for: .normal)
+        }
     }
+    
     @IBAction func onTouchBtnClose(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func onTouchBookmarkbtn(_ sender: Any) {
+        if btnBookmark.imageView?.image == #imageLiteral(resourceName: "ic_bookmark_fill"){
+            btnBookmark.setImage(UIImage(named: "ic_bookmark_empty"), for: .normal)
+            BookmarkVO.deleteMovieBookmark(movieId: movieId, realm: realm)
+        }else{
+            btnBookmark.setImage(UIImage(named: "ic_bookmark_fill"), for: .normal)
+            BookmarkVO.saveMovieBookmark(movieId: movieId, realm: realm)
+        }
     }
 }

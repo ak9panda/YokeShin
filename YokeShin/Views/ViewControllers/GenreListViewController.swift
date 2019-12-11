@@ -27,9 +27,15 @@ class GenreListViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.title = "Genres"
+    }
+    
     func initView() {
         GenreListTableView.dataSource = self
         GenreListTableView.delegate = self
+        GenreListTableView.separatorColor = UIColor.clear
         let genreList = realm.objects(MovieGenreVO.self)
         if genreList.isEmpty {
             MovieModel.shared.fetchMovieGenres(completion: { (movieGenre) in

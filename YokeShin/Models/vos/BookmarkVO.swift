@@ -16,7 +16,7 @@ import RealmSwift
     dynamic var movieDetails : MovieVO?
     
     override static func primaryKey() -> String?{
-        return "id"
+        return "movie_id"
     }
 }
 
@@ -31,6 +31,16 @@ extension BookmarkVO {
         do{
             try realm.write {
                 realm.add(movieBookmarkVO)
+            }
+        }catch{
+            print("Error: \(error.localizedDescription), cannot added to bookmark")
+        }
+    }
+    
+    static func deleteMovieBookmark(movieId : Int, realm : Realm) {
+        do{
+            try realm.write {
+                realm.delete(realm.objects(BookmarkVO.self).filter("movie_id=%@",movieId))
             }
         }catch{
             print("Error: \(error.localizedDescription), cannot added to bookmark")
