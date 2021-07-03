@@ -10,6 +10,7 @@
 		41B1D8CE68511F78588FBE66 /* Pods_YokeShin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2E6832006281C5AF38B4CA6 /* Pods_YokeShin.framework */; };
 		8402609A2390F67900434043 /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840260992390F67900434043 /* TitleSupplementaryView.swift */; };
 		841E8D8F238CC24800C7D52A /* GenreListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E8D8E238CC24800C7D52A /* GenreListTableViewCell.swift */; };
+		84289F792690BFFB0004384B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84289F782690BFFB0004384B /* Colors.xcassets */; };
 		84D5AEA7238BB0EA0032D8F8 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5AEA6238BB0EA0032D8F8 /* MovieDetailViewController.swift */; };
 		84D5AEA9238BB1430032D8F8 /* GenreListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5AEA8238BB1430032D8F8 /* GenreListViewController.swift */; };
 		84D5AEAB238BB1AD0032D8F8 /* MoviesByGenreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5AEAA238BB1AD0032D8F8 /* MoviesByGenreViewController.swift */; };
@@ -57,6 +58,7 @@
 /* Begin PBXFileReference section */
 		840260992390F67900434043 /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
 		841E8D8E238CC24800C7D52A /* GenreListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreListTableViewCell.swift; sourceTree = "<group>"; };
+		84289F782690BFFB0004384B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		84D5AEA6238BB0EA0032D8F8 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		84D5AEA8238BB1430032D8F8 /* GenreListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreListViewController.swift; sourceTree = "<group>"; };
 		84D5AEAA238BB1AD0032D8F8 /* MoviesByGenreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesByGenreViewController.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				B5999E06236451C900BA9553 /* Assets.xcassets */,
 				B5999E08236451C900BA9553 /* LaunchScreen.storyboard */,
 				B5999E0B236451C900BA9553 /* Info.plist */,
+				84289F782690BFFB0004384B /* Colors.xcassets */,
 			);
 			path = YokeShin;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5999E0A236451C900BA9553 /* LaunchScreen.storyboard in Resources */,
+				84289F792690BFFB0004384B /* Colors.xcassets in Resources */,
 				B5999E07236451C900BA9553 /* Assets.xcassets in Resources */,
 				B5999E05236451C500BA9553 /* Main.storyboard in Resources */,
 			);
@@ -646,7 +650,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HA4A8Y4KQA;
+				DEVELOPMENT_TEAM = TK22U6U79B;
 				INFOPLIST_FILE = YokeShin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -665,8 +669,8 @@
 			baseConfigurationReference = 9D0B472B1505710675E8EAD5 /* Pods-YokeShin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HA4A8Y4KQA;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = YokeShin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -675,6 +679,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = akp.YokeShin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

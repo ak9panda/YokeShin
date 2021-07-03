@@ -41,7 +41,7 @@ class MovieDetailViewController: UIViewController {
         
         let gradient: CAGradientLayer = CAGradientLayer()
 
-        gradient.colors = [UIColor.lightGray.cgColor, UIColor.clear.cgColor]
+        gradient.colors = [UIColor(named: "SecondaryColor")?.cgColor ?? UIColor.lightGray.cgColor, UIColor.clear.cgColor]
         gradient.locations = [0.0 , 1.0]
         gradient.startPoint = CGPoint(x: 1.0, y: 0.0)
         gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
@@ -75,9 +75,9 @@ class MovieDetailViewController: UIViewController {
         self.imgCoverViewLarge.sd_setImage(with: URL(string: "\(API.BASE_IMG_URL)\(data.poster_path ?? "")"), placeholderImage: #imageLiteral(resourceName: "ic_movie"), options:  SDWebImageOptions.progressiveLoad, completed: nil)
         self.lblMovieName.text = data.original_title
 //        self.imgCoverViewSmall.sd_setImage(with: URL(string: "\(API.BASE_IMG_URL)\(data.poster_path ?? "")"), placeholderImage: #imageLiteral(resourceName: "ic_movie"), options:  SDWebImageOptions.progressiveLoad, completed: nil)
-        self.lblYear.text = data.release_date
-        self.lblType.text = data.genres[0].name
-        self.lblHours.text = String(data.runtime)
+        self.lblYear.text = formatDate(dateString: data.release_date ?? "")
+        self.lblType.text = " \(data.genres[0].name) "
+        self.lblHours.text = formatTime(runtime: data.runtime)
         self.lblMovieDesc.text = data.overview
         if data.genres.count > 0 {
             data.genres.forEach{ genre in
@@ -104,5 +104,24 @@ class MovieDetailViewController: UIViewController {
             btnBookmark.setImage(UIImage(named: "ic_bookmark_fill"), for: .normal)
             BookmarkVO.saveMovieBookmark(movieId: movieId, realm: realm)
         }
+    }
+    
+    func formatDate(dateString: String) -> String {
+        if dateString.count > 0 {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let date = dateFormatter.date(from: dateString)
+            
+            let dateFormatter1 = DateFormatter()
+            dateFormatter1.dateFormat = "MMM d, yyyy"
+            return " \(dateFormatter1.string(from: date ?? Date())) "
+        }
+        return ""
+    }
+    
+    func formatTime(runtime: Int) -> String {
+        let hour = runtime / 60
+        let min = runtime % 60
+        return " \(hour)hr \(min)min "
     }
 }
